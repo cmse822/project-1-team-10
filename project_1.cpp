@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <random>
-
+#include "get_walltime.c"
 // Matrix struct (no need to deal with private data, so class uneeded)
 struct Matrix
 {
@@ -50,8 +50,7 @@ struct Matrix
 	// Generates either a matrix of random integers (pass true) or 0 - n^2 in order if false/default
 	void GenerateElements(bool random = false)
 	{
-		// !!!NEEDS TO BE CHANGED TO RANDOM DOUBLES!!!
-		std::uniform_int_distribution<int> uniform(-10, 10);
+		std::uniform_real_distribution<double> uniform(-10, 10);
 		std::default_random_engine dre(std::random_device{}());
 		for (int i = 0; i < dim * dim; ++i)
 		{
@@ -85,7 +84,7 @@ struct Matrix
 };
 
 // Matrix multiplication, takes in Matrix a, b and c, then performs c = a*b.
-void MatMult (const Matrix& a, const Matrix& b, Matrix& c)
+void MatMul (const Matrix& a, const Matrix& b, Matrix& c)
 {
 	for (int i = 0; i < a.dim; ++i)
 	{
@@ -147,8 +146,8 @@ void RunBasicTests()
 	M.DisplayMatrix();
 	std::cout << std::endl;
 
-	MatMult(N, M, NM);
-	MatMult(M, N, MN);
+	MatMul(N, M, NM);
+	MatMul(M, N, MN);
 	std::cout << "Matrix N*M:" << std::endl;
 	NM.DisplayMatrix();
 	std::cout << "Matrix M*N:" << std::endl;
@@ -162,44 +161,62 @@ double TestSize(int n, int tests)
 {
 	// Sum of times for all the tests for this size
 	double timeSum = 0.0;
-
-	// Run a certain number of tests
+    // Run a certain number of tests
 	for (int t = 0; t < tests; ++t)
 	{
-		// Generate matrices, polulate randomly for a and b (c starts as all 0s)
+
+        // Generate matrices, populate randomly for a and b (c starts as all 0s)
 		Matrix a(n);
 		Matrix b(n);
 		Matrix c(n);
 		a.GenerateElements(true);
 		b.GenerateElements(true);
 
-		// !!!NEEDS TO HAVE TIMING ADDED HERE!!! (either in the MatMult function or outside of it)
-		MatMult(a, b, c);
-
-		timeSum += 0.0;
+        // Timing
+        double start_time;
+        get_walltime(&start_time);
+        // Matrix Multiplication
+		MatMul(a, b, c);
+        double end_time;
+        // Final Timing
+        get_walltime(&end_time);
+		timeSum += end_time - start_time;
 	}
 
 	// Return the average time taken
 	return timeSum / tests;
 }
 
+double getMFlops(int test_size, double time_elapsed)
+{
+    long d = (double) test_size;
+    long num_multiplication =  d * d * d;
+    long num_additions = test_size * test_size * (test_size - 1);
+    //    printf("#### %ld \t %ld ###\n", num_additions, num_multiplication);
+    long num_operations = num_additions+num_multiplication;
+    //    printf("#### %ld \t %f ###\n", num_operations,time_elapsed);
+    double MFlops = num_operations / (time_elapsed * 1e6); // source used https://course.ccs.neu.edu/cs3650/ssl/TEXT-CD/Content/COD3e/InMoreDepth/IMD4-MFLOPS-as-a-Performance-Metric.pdf
+
+    return MFlops;
+}
 // Function to output test data, should print to standard output
 // The goal is to pipeline the data into python for plotting, ex: ./project_1 > python main.py
-void OutputTestData()
+void OutputTestData(int test_size, double time_elapsed)
 {
-
+    printf("%d \t %.8f \t %.8f \n", test_size,  time_elapsed, getMFlops(test_size, time_elapsed));
 }
 
 int main()
 {
 	// Keeping a simple list of sizes to check for now, a list for storing results, and how many tests for each size
-	std::vector<int> test_sizes = { 5, 10, 50, 100, 500, 1000, 2500, 5000, 10000 };
-	std::vector<int> test_results(test_sizes.size(), 0);
-	int test_quantity = 10;
+	std::vector<int> test_sizes = {5, 10, 50, 100, 500, 1000, 1200, 1500, 2500, 5000, 10000 };
+	std::vector<double> test_results(test_sizes.size(), 0);
+	int test_quantity = 100;
 
 	// Run tests on each size
 	for (int i = 0; i < test_sizes.size(); ++i)
 	{
 		test_results[i] = TestSize(test_sizes[i], test_quantity);
+        OutputTestData(test_sizes[i], test_results[i]);
 	}
 }
