@@ -102,57 +102,57 @@ void MatMul (const Matrix& a, const Matrix& b, Matrix& c)
 // Basic testing I left for reference, not intended for actual use
 void RunBasicTests()
 {
-	Matrix a = Matrix();
-	std::cout << "Constructed" << std::endl;
-	std::cout << "Dim: " << a.dim << std::endl;
-	std::cout << std::endl;
-
-	a.Resize(10);
-	std::cout << "Resized" << std::endl;
-	std::cout << "Dim: " << a.dim << std::endl;
-	a.DisplayMatrix();
-	std::cout << std::endl;
-
-
-	a.GenerateElements(true);
-	std::cout << "Generated random elements" << std::endl;
-	a.DisplayMatrix();
-	a.GenerateElements();
-	std::cout << "Generated non-random elements" << std::endl;
-	a.DisplayMatrix();
-	std::cout << std::endl;
-
-	std::cout << "Checking element access" << std::endl;
-	std::cout << "[0][0] = " << a(0, 0) << std::endl;
-	std::cout << "[0][5] = " << a(0, 5) << std::endl;
-	std::cout << "[3][0] = " << a(3, 0) << std::endl;
-	std::cout << "[4][7] = " << a(4, 7) << std::endl;
-	std::cout << "[5][5] = " << a(5, 5) << std::endl;
-	std::cout << "[7][1] = " << a(7, 1) << std::endl;
-	std::cout << "[9][9] = " << a(9, 9) << std::endl;
-	std::cout << "Numbers should match rows/columns, ex: [3][4] = 34" << std::endl;
-	std::cout << std::endl;
-
-	std::cout << "Checking matrix multiplication" << std::endl;
-	Matrix N = Matrix(5);
-	Matrix M = Matrix(5);
-	Matrix NM = Matrix(5);
-	Matrix MN = Matrix(5);
-	N.GenerateElements(true);
-	M.GenerateElements(true);
-	std::cout << "Matrix N:" << std::endl;
-	N.DisplayMatrix();
-	std::cout << "Matrix M:" << std::endl;
-	M.DisplayMatrix();
-	std::cout << std::endl;
-
-	MatMul(N, M, NM);
-	MatMul(M, N, MN);
-	std::cout << "Matrix N*M:" << std::endl;
-	NM.DisplayMatrix();
-	std::cout << "Matrix M*N:" << std::endl;
-	MN.DisplayMatrix();
-	std::cout << std::endl;
+//	Matrix a = Matrix();
+//	std::cout << "Constructed" << std::endl;
+//	std::cout << "Dim: " << a.dim << std::endl;
+//	std::cout << std::endl;
+//
+//	a.Resize(10);
+//	std::cout << "Resized" << std::endl;
+//	std::cout << "Dim: " << a.dim << std::endl;
+//	a.DisplayMatrix();
+//	std::cout << std::endl;
+//
+//
+//	a.GenerateElements(true);
+//	std::cout << "Generated random elements" << std::endl;
+//	a.DisplayMatrix();
+//	a.GenerateElements();
+//	std::cout << "Generated non-random elements" << std::endl;
+//	a.DisplayMatrix();
+//	std::cout << std::endl;
+//
+//	std::cout << "Checking element access" << std::endl;
+//	std::cout << "[0][0] = " << a(0, 0) << std::endl;
+//	std::cout << "[0][5] = " << a(0, 5) << std::endl;
+//	std::cout << "[3][0] = " << a(3, 0) << std::endl;
+//	std::cout << "[4][7] = " << a(4, 7) << std::endl;
+//	std::cout << "[5][5] = " << a(5, 5) << std::endl;
+//	std::cout << "[7][1] = " << a(7, 1) << std::endl;
+//	std::cout << "[9][9] = " << a(9, 9) << std::endl;
+//	std::cout << "Numbers should match rows/columns, ex: [3][4] = 34" << std::endl;
+//	std::cout << std::endl;
+//
+//	std::cout << "Checking matrix multiplication" << std::endl;
+//	Matrix N = Matrix(5);
+//	Matrix M = Matrix(5);
+//	Matrix NM = Matrix(5);
+//	Matrix MN = Matrix(5);
+//	N.GenerateElements(true);
+//	M.GenerateElements(true);
+//	std::cout << "Matrix N:" << std::endl;
+//	N.DisplayMatrix();
+//	std::cout << "Matrix M:" << std::endl;
+//	M.DisplayMatrix();
+//	std::cout << std::endl;
+//
+//	MatMul(N, M, NM);
+//	MatMul(M, N, MN);
+//	std::cout << "Matrix N*M:" << std::endl;
+//	NM.DisplayMatrix();
+//	std::cout << "Matrix M*N:" << std::endl;
+//	MN.DisplayMatrix();
+//	std::cout << std::endl;
 }
 
 // Function to test matrices of size n

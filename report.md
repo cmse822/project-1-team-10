@@ -11,7 +11,7 @@
 ## Part 1
 ### 1
 Code is available in `project_1.cpp`.
-```python
+```c
 // Matrix multiplication, takes in Matrix a, b and c, then performs c = a*b.
 void MatMul (const Matrix& a, const Matrix& b, Matrix& c)
 {
