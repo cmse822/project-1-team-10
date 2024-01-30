@@ -165,23 +165,25 @@ double TestSize(int n, int tests)
 	for (int t = 0; t < tests; ++t)
 	{
 
-        // Generate matrices, populate randomly for a and b (c starts as all 0s)
+    // Generate matrices, populate randomly for a and b (c starts as all 0s)
 		Matrix a(n);
 		Matrix b(n);
 		Matrix c(n);
 		a.GenerateElements(true);
 		b.GenerateElements(true);
 
-        // Timing
-        double start_time;
-        get_walltime(&start_time);
-        // Matrix Multiplication
+    // Timing
+    double start_time;
+    get_walltime(&start_time);
+    
+    // Matrix Multiplication
 		MatMul(a, b, c);
-        double end_time;
-        // Final Timing
-        get_walltime(&end_time);
+    double end_time;
+    
+    // Final Timing
+    get_walltime(&end_time);
 		timeSum += end_time - start_time;
-	}
+  }
 
 	// Return the average time taken
 	return timeSum / tests;
@@ -209,14 +211,14 @@ void OutputTestData(int test_size, double time_elapsed)
 int main()
 {
 	// Keeping a simple list of sizes to check for now, a list for storing results, and how many tests for each size
-	std::vector<int> test_sizes = {5, 10, 50, 100, 500, 1000, 1200, 1500, 2500, 5000, 10000 };
+	std::vector<int> test_sizes = { 50, 100, 150, 200, 250, 300, 350, 400, 450, 500, 600, 700, 800, 900, 1000, 1100, 1200, 1300, 1400, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000 };
 	std::vector<double> test_results(test_sizes.size(), 0);
-	int test_quantity = 100;
+	int test_quantity = 10;
 
 	// Run tests on each size
 	for (int i = 0; i < test_sizes.size(); ++i)
 	{
 		test_results[i] = TestSize(test_sizes[i], test_quantity);
-        OutputTestData(test_sizes[i], test_results[i]);
+    OutputTestData(test_sizes[i], test_results[i]);
 	}
 }
