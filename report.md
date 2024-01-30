@@ -53,3 +53,7 @@ For $N=100$, the performance is lower than the theoretical peak performance, whi
 
 
 ![matrix_size_flops.png](assets%2Fmatrix_size_flops.png)
+
+## Part 2
+
+4
