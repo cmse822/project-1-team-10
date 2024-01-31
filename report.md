@@ -56,8 +56,6 @@ For our two systems
 | G14 Zephyrus (local) | 0.13351        | 14904.759 |
 | amd20              | 0.4576           | 4348.807  |
 
-![matrix_size_flops.png](assets%2Fmatrix_size_flops.png)
-
 #### HPCC (amd20)
 We threw the matrix-matrix kernel onto the HPCC to test its performance.  We used the AMD20 development node to run our code.  That node was equipped with a 2.6GHz processor, with 128 cores and 960GBs of memory according to https://docs.icer.msu.edu/development_nodes/.  This gives a theoretical performance of **332.8 GFLOPs/sec**, though the ERT shows a peak of **16GFLOPs/sec**. We submitted a job to the hpcc and the resulting graph is shown below. 
 
