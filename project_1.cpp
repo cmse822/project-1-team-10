@@ -193,7 +193,7 @@ double getMFlops(int test_size, double time_elapsed)
 {
     double d = (double) test_size;
     double num_multiplication =  d * d * d;
-    double num_additions = test_size * test_size * (test_size - 1);
+    double num_additions = d * d * (d - 1);
     //    printf("#### %ld \t %ld ###\n", num_additions, num_multiplication);
     double num_operations = num_additions+num_multiplication;
     //    printf("#### %ld \t %f ###\n", num_operations,time_elapsed);
