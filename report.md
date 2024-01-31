@@ -109,3 +109,9 @@ The high end of operational intensity for this kernel was 0.50 FLOPS/byte.
 
 #### Three-Dimensional Fast Fourier Transform (3-D FFT)
 The high end of operational intensity for this kernel was 1.64 FLOPS/byte.
+### 4: 
+In this analysis, we focus on the upper bound of operation intensity. Under this assumption, and based on the roofline plots demonstrated, it becomes clear that all four of our approaches are predominantly compute-bound. In such cases, where the limitation is computational, two key recommendations emerge: enhancing instruction level parallelism (ILP) and balancing floating-point operations. Balancing involves striving for a similar number of floating-point additions and subtractions, an aspect deeply ingrained in the specific algorithm being utilized, which may not always be subject to modification. It's important to note that the impact of ILP can vary depending on the system's architecture. Nevertheless, a viable method to effectively implement ILP is through loop unrolling, which can help optimize computational kernels despite these varying architectural influences
+
+### 6:
+The rooflines of memory bandwidth are directly related to the algorithmic performance as a function of matrix size.
+As matrix size increases, the ability to reuse data efficiently becomes more critical, impacting arithmetic intensity and, consequently, overall performance.
