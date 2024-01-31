@@ -99,21 +99,21 @@ We can see that it calculate the peak performance to be 23.9 GFLOPS/s which is s
 Comparing this roofline model to the matrix-matrix multiplication chart, we can see that the 2 drops would correspond with the matrix size not being able to be fit into a singular cache.  The 2 drops suggest that after around N = 1500, the processor was bandwidth-bound in the L3 cache.
 
 
-### FP kernels in "Roofline: An Insightful Visual Performance Model for Floating-Point Programs and Multicore Architectures"
+### 4: FP kernels in "Roofline: An Insightful Visual Performance Model for Floating-Point Programs and Multicore Architectures"
 
 In the paper "Roofline: An Insightful Visual Performance Model for Floating-Point Programs and Multicore Architectures", the authors detail 4 kernels that they used to test performance.  The 4 kernels were Sparse Matrix-Vector Multiply. Lattice-Boltzmann Magnetohydro-dynamics, Stencil, and Three-Dimensional Fast Fourier.  In the following sections, we'll talk about how they would perform our the platforms we tested as well as suggest some optimization strategies for them.
 
 #### Sparce Matrix-Vector Multiply Optimizations (SpMV)
-The high end of operational intensity for this kernel was 0.25 FLOPS/byte. For the g14 laptop, this would mean that this kernel sits after the ridgepoint of L2 but before the ridgepoint of L3.  
+The high end of operational intensity for this kernel was 0.25 FLOPS/byte. For the g14 laptop, this would mean that this kernel reaches around 10 GFLOPS/s for being compute bound.  For the HPCC it can reach 12 GFLOPS/s.
 
 #### Lattice-Boltzmann Magnetohydro-dynamics (LBMHD)
-The high end of operational intensity for this kernel was 1.07 FLOPS/byte. For the g14 laptop, this means that the kernel's operational intensity is just after the ridgepoint of DRAM.
+The high end of operational intensity for this kernel was 1.07 FLOPS/byte. For the g14 laptop, the kernel is bound by our peak.  For the HPCC it is also bound by the peak, but can each just under the Spec DRAM peak of 80GB/s
 
 #### Multigrid kernel that updates 3-D stencil (Stencil)
-The high end of operational intensity for this kernel was 0.50 FLOPS/byte.  
+The high end of operational intensity for this kernel was 0.50 FLOPS/byte.  The g14 reaches a peak of around 12GB/s being bandwith bound, and around 13gb/s also bandwidth bound.
 
 #### Three-Dimensional Fast Fourier Transform (3-D FFT)
-The high end of operational intensity for this kernel was 1.64 FLOPS/byte.
+The high end of operational intensity for this kernel was 1.64 FLOPS/byte.  The g14 and hpcc again are bound by the peak.
 ### 4: 
 In this analysis, we focus on the upper bound of operation intensity. Under this assumption, and based on the roofline plots demonstrated, it becomes clear that all four of our approaches are predominantly compute-bound. In such cases, where the limitation is computational, two key recommendations emerge: enhancing instruction level parallelism (ILP) and balancing floating-point operations. Balancing involves striving for a similar number of floating-point additions and subtractions, an aspect deeply ingrained in the specific algorithm being utilized, which may not always be subject to modification. It's important to note that the impact of ILP can vary depending on the system's architecture. Nevertheless, a viable method to effectively implement ILP is through loop unrolling, which can help optimize computational kernels despite these varying architectural influences
 
