@@ -127,3 +127,4 @@ As can be seen, all but the second kernel are compute bound, while the second ha
 ### 6:
 The rooflines of memory bandwidth are directly related to the algorithmic performance as a function of matrix size.
 As matrix size increases, the ability to reuse data efficiently becomes more critical, impacting arithmetic intensity and, consequently, overall performance.
+The theoretical peak performance (26.4Gflops/s) is the computational roof. In the matrix-matrix multiplication results, the  performance generally stays below this peak, indicating that computational capability may not the sole limiting factor.
