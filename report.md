@@ -4,7 +4,7 @@
 
 |              Kernel              | Arithmetic Intensity (flops/byte) |
 | :-------------------------------: | :-------------------------------: |
-| `Y[j] += Y[j] + A[j][i] * B[i]` |     $\frac{2}{4 \times 8}$     |
+| `Y[j] += Y[j] + A[j][i] * B[i]` |     $\frac{3}{4 \times 8}$     |
 |       `s += A[i] * A[i]`       |     $\frac{2}{1 \times 8}$     |
 |       `s += A[i] * B[i]`       |     $\frac{2}{2 \times 8}$     |
 |     `Y[i] = A[i] + C*B[i]`     |     $\frac{2}{3 \times 8}$     |
