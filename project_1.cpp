@@ -199,6 +199,7 @@ double getMFlops(int test_size, double time_elapsed)
     //    printf("#### %ld \t %f ###\n", num_operations,time_elapsed);
     double MFlops = num_operations / (time_elapsed * 1e6); // source used https://course.ccs.neu.edu/cs3650/ssl/TEXT-CD/Content/COD3e/InMoreDepth/IMD4-MFLOPS-as-a-Performance-Metric.pdf
 
+	printf("**** %.8f \t %.8f \t %.8f \t %.8f \t %.8f \t %.8f  *****\n", d, num_additions, num_multiplication, num_operations, (time_elapsed * 1e6), MFlops);
     return MFlops;
 }
 // Function to output test data, should print to standard output
@@ -219,6 +220,6 @@ int main()
 	for (int i = 0; i < test_sizes.size(); ++i)
 	{
 		test_results[i] = TestSize(test_sizes[i], test_quantity);
-    OutputTestData(test_sizes[i], test_results[i]);
+    	OutputTestData(test_sizes[i], test_results[i]);
 	}
 }

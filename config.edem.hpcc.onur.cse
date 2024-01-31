@@ -1,4 +1,4 @@
-ERT_RESULTS Results.Linux.Intel.pureOpenMP
+ERT_RESULTS Results.hpcc.onur.cse
 
 ERT_SPEC_GBYTES_DRAM    51.20
 
