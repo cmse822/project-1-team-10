@@ -115,6 +115,8 @@ In this analysis, we focus on the upper bound of operation intensity. Under this
 ### 5
 The respective arithmetic intensity for each kernel in the warm up is 0.0625, 0.25, 0.125, and 0.083 (in order). Assuming this is the high end of intensity for each, and they are running on the G14 Zephyrus, they will likely have the following performance:
 
+![warm_up_prediction.png](assets%2Fwarm_up_prediction.png)
+
 As can be seen, all but the second kernel are compute bound, while the second has a mix of somput and memory bounding. As such, all of them could potentially improve if optimized using techniques to maximize efficiency. To break through the limitations of memory-bound issues, reorganizing loops to ensure stride access and utilizing software prefetching stand out as potential optimizations. These techniques help get the most out of memory, improve cache utilization, reduce register pressure, and allow for long unit stride accesses. These would very likely imporve the performance for most of the warm up kernels.
 
 ### 6:
